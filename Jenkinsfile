@@ -5,7 +5,7 @@ agent any
 	stages{
 		stage('PMD') {
 		    steps {
-			 sh 'pwd'
+			
 			    sh 'dir'
 			//sh 'vendor/bin/phpmd . xml build/phpmd.xml --reportfile **/PDMOutput.xml --exclude vendor/ || exit 0'
 			//pmd canRunOnFailed: true, pattern: 'build/logs/pmd.xml'
