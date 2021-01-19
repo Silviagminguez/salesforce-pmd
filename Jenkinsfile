@@ -10,7 +10,11 @@ environment{
 		    steps {
     			script{
     			   dir("${PMD}"){
-    			     bat ('pmd.bat -d C:/Jenkins/workspace/salesforce-pipeline/force-app/main/default/classes -R rulesets/apex/quickstart.xml -f html -reportfile C:/Jenkins/workspace/salesforce-pipeline/force-app/PMDOutput.html -failOnViolation false ')
+    			       echo "Aqui"
+    			        bat ('pmd.bat -d C:/Jenkins/workspace/salesforce-pipeline/force-app/main/default/classes -R rulesets/apex/quickstart.xml -f xml -reportfile C:/Jenkins/workspace/salesforce-pipeline/PMDOutput.xml -failOnViolation false')
+    			        dir ("C:/Jenkins/workspace/salesforce-pipeline/"){
+    			            echo"Cambio directorio"
+    			        }
     			   }
     			}
 		    }
@@ -18,13 +22,16 @@ environment{
                 always {
                     recordIssues(
                             enabledForFailure: true,
-                            tool: pmdParser(pattern: '**/PMDOutput.html'),
+                            tool: pmdParser(pattern: 'PMDOutput.xml'),
                             unstableTotalAll: 20,
                             failedTotalAll: 30,
                     )
                 }
             }
 		}
+	}
+}
+
 		
 	}
 }
